@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JAY BABARIYA - Full Stack Developer</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="media.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="shortcut icon" href="images/JB.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+  </head>
+
+  <body>
+    <!--preloader Div start -->
+    <div id="preloader">
+      <div class="hexagon-loader">
+        <div class="hexagon-inner">
+          <span class="loader-initials">JB</span>
+        </div>
+      </div>
+    </div>
+    <!--preloader Div end -->
+
+    <div class="container" id="main-container">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+          <div class="dev_logo animated-section">
+            <img
+              src="images/Jay_Babariya_Profile_Picture.jpg"
+              alt="Jay Babariya Profile Picture"
+            />
+          </div>
+          <h1 class="sidebar-name animated-section">
+            <a href="#home">JAY BABARIYA</a>
+          </h1>
+          <nav class="sidebar-nav animated-section">
+            <ul>
+              <li>
+                <a href="#home" class="nav-link active"
+                  ><i class="bx bx-home-alt"></i><span>Home</span></a
+                >
+              </li>
+              <li>
+                <a href="#about" class="nav-link"
+                  ><i class="bx bx-user"></i><span>About</span></a
+                >
+              </li>
+              <li>
+                <a href="#skills" class="nav-link"
+                  ><i class="bx bx-chip"></i><span>Skills</span></a
+                >
+              </li>
+              <li>
+                <a href="#resume" class="nav-link"
+                  ><i class="bx bx-file-blank"></i><span>Resume</span></a
+                >
+              </li>
+              <li>
+                <a href="#projects" class="nav-link"
+                  ><i class="bx bx-briefcase-alt-2"></i><span>Projects</span></a
+                >
+              </li>
+              <li>
+                <a href="#github" class="nav-link"
+                  ><i class="bx bxl-github"></i><span>Github</span></a
+                >
+              </li>
+              <li>
+                <a href="#contact" class="nav-link"
+                  ><i class="bx bx-envelope"></i><span>Contact</span></a
+                >
+              </li>
+            </ul>
+          </nav>
+          <div class="social_accounts animated-section">
+            <ul>
+              <li>
+                <a
+                  href="https://x.com/JayBabariya18?t=tywR86akMBkXoGWQpO6q1g&s=09"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Twitter Profile"
+                  ><i class="bx bxl-twitter"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/profile.php?id=100074902613733"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook Profile"
+                  ><i class="bx bxl-facebook-square"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/jaybabariya_01?igsh=MWw1azdscGxrcWpwdA=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram Profile"
+                  ><i class="bx bxl-instagram-alt"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/jaybabariya1612"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub Profile"
+                  ><i class="bx bxl-github"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/jay-babariya-81564b357?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn Profile"
+                  ><i class="bx bxl-linkedin-square"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+          <p class="copyright animated-section">
+            &copy; <span id="current-year"></span> Jay Babariya. All Rights
+            Reserved
+          </p>
+        </div>
+      </aside>
+      <main class="main-content" id="main-content">
+        <button
+          class="menu-btn"
+          id="menu-btn"
+          aria-label="Toggle Menu"
+          aria-expanded="false"
+        >
+          <i class="bx bx-menu"></i>
+        </button>
+
+        <section class="main_home section" id="home">
+          <div class="home_content animated-section">
+            <h2 class="home-greeting">Hello, I'm</h2>
+            <h1 class="home-name">Jay Babariya</h1>
+            <h3 class="home-title">
+              I'm a <span id="text"></span><span id="cursor"></span>
+            </h3>
+            <p class="home-description">
+              Passionate Full Stack Developer specializing in creating elegant,
+              efficient, and user-centric digital experiences. Based in
+              Ahmedabad, India.
+            </p>
+            <div class="home-buttons">
+              <a href="#contact" class="btn btn-primary">Hire Me</a>
+              <a
+                href="JayBabariya_Resume.pdf"
+                download="JayBabariya_Resume.pdf"
+                class="btn btn-secondary"
+              >
+                Download Resume <i class="bx bxs-download"></i>
+              </a>
+            </div>
+          </div>
+          <div class="home_image animated-section">
+            <img src="images/webdev.png" alt="Developer Illustration" />
+          </div>
+        </section>
+        <section class="section" id="about">
+          <h2 class="section-heading animated-section">
+            <span>About Me</span>
+          </h2>
+          <p class="section-subheading animated-section">
+            Learn more about my background, skills, and passion for development.
+          </p>
+          <div class="main_about">
+            <div class="about_image animated-section">
+              <img
+                src="images/Jay_Babariya_Profile_Picture.jpg"
+                alt="Jay Babariya"
+              />
+            </div>
+            <div class="about_content animated-section">
+              <h3>Full Stack Developer | .NET & React Specialist</h3>
+              <p class="about-quote">
+                "Code is like humor. When you have to explain it, it’s bad." –
+                Cory House
+              </p>
+              <p>
+                Driven and detail-oriented Full Stack Developer with expertise
+                in crafting robust web applications using the .NET framework and
+                modern front-end libraries like React. I thrive in collaborative
+                environments, transforming complex problems into intuitive and
+                scalable solutions. Currently enhancing my skills through
+                practical experience as a .NET Intern at Patel Web Solution.
+              </p>
+              <div class="about-details-grid">
+                <ul class="about-info">
+                  <li>
+                    <i class="bi bi-chevron-right"></i><strong>Email:</strong>
+                    <a href="mailto:jaybabariya01@gmail.com"
+                      ><span>jaybabariya01@gmail.com</span></a
+                    >
+                  </li>
+                  <li>
+                    <i class="bi bi-chevron-right"></i><strong>Phone:</strong>
+                    <span>+91 94082 71133</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-chevron-right"></i><strong>City:</strong>
+                    <span>Ahmedabad, India</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-chevron-right"></i><strong>Degree:</strong>
+                    <span>BCA (Pursuing)</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-chevron-right"></i
+                    ><strong>Freelance:</strong> <span>Available</span>
+                  </li>
+                </ul>
+                <!-- <ul class="about-info">
+                  <li>
+                    <i class="bi bi-chevron-right"></i><strong>Age:</strong>
+                    <span id="age">20</span>
+                  </li>
+
+                  <li>
+                    <i class="bi bi-chevron-right"></i
+                    ><strong>Website:</strong> <span>www.yourdomain.com</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-chevron-right"></i
+                    ><strong>Birthday:</strong> <span>13 july 2006</span>
+                  </li>
+                </ul> -->
+              </div>
+              <p>
+                Beyond technical skills, I possess strong communication and
+                problem-solving abilities, ensuring effective teamwork and
+                successful project delivery. I'm always eager to learn new
+                technologies and contribute to impactful projects.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="section skills-section" id="skills">
+          <h2 class="section-heading animated-section">
+            <span>My Skills</span>
+          </h2>
+          <p class="section-subheading animated-section">
+            A snapshot of the technologies and tools I work with.
+          </p>
+          <div class="main_skill">
+            <div class="skill-category animated-section">
+              <h3 class="skill-category-title">Frontend Development</h3>
+              <div class="skills-grid">
+                <div class="skill-item"><i class="bx bxl-html5"></i> HTML5</div>
+                <div class="skill-item"><i class="bx bxl-css3"></i> CSS3</div>
+                <div class="skill-item">
+                  <i class="bx bxl-javascript"></i> JavaScript
+                </div>
+                <div class="skill-item">
+                  <i class="bx bxl-react"></i> React.js
+                </div>
+                <div class="skill-item">
+                  <i class="bx bxl-bootstrap"></i> Bootstrap
+                </div>
+                <div class="skill-item">
+                  <i class="bx bxl-tailwind-css"></i> Tailwind CSS
+                </div>
+              </div>
+            </div>
+            <div class="skill-category animated-section">
+              <h3 class="skill-category-title">Backend Development</h3>
+              <div class="skills-grid">
+                <div class="skill-item">
+                  <i class="bx bxl-visual-studio"></i> .NET (Core, MVC)
+                </div>
+                <div class="skill-item">
+                  <i class="devicon-csharp-plain"></i> C#
+                </div>
+                <div class="skill-item">
+                  <i class="bx bx-data"></i> SQL Server
+                </div>
+                <div class="skill-item">
+                  <i class="bx bxl-mongodb"></i> MongoDB
+                </div>
+                <div class="skill-item">
+                  <i class="bx bxl-git"></i> RESTful APIs
+                </div>
+              </div>
+            </div>
+            <!-- <div class="skill-category animated-section">
+                          <h3 class="skill-category-title">Tools & Concepts</h3>
+                          <div class="skills-grid">
+                              <div class="skill-item"><i class='bx bxl-git'></i> Git & GitHub</div>
+                              <div class="skill-item"><i class='bx bx-shape-circle'></i> Agile Methodologies</div>
+                              <div class="skill-item"><i class='bx bx-devices'></i> Responsive Design</div>
+                              <div class="skill-item"><i class='bx bx-bug'></i> Debugging</div>
+                              <div class="skill-item"><i class='bx bx-terminal'></i> CLI Tools</div>
+                              </div>
+                      </div> -->
+          </div>
+          <div class="progress-bars-container animated-section">
+            <h3 class="progress-bars-title">Proficiency Levels</h3>
+            <div class="progress-grid">
+              <div class="progress">
+                <div class="progress_content">
+                  <span>HTML / CSS / Bootstrap</span> <span>80%</span>
+                </div>
+                <div class="progress_bar">
+                  <div class="inner_progress" data-skill-level="80"></div>
+                </div>
+              </div>
+              <div class="progress">
+                <div class="progress_content">
+                  <span>JavaScript</span> <span>75%</span>
+                </div>
+                <div class="progress_bar">
+                  <div class="inner_progress" data-skill-level="75"></div>
+                </div>
+              </div>
+              <div class="progress">
+                <div class="progress_content">
+                  <span>React.js</span> <span>70%</span>
+                </div>
+                <div class="progress_bar">
+                  <div class="inner_progress" data-skill-level="70"></div>
+                </div>
+              </div>
+              <div class="progress">
+                <div class="progress_content">
+                  <span>.NET (MVC & Core)</span> <span>80%</span>
+                </div>
+                <div class="progress_bar">
+                  <div class="inner_progress" data-skill-level="80"></div>
+                </div>
+              </div>
+              <div class="progress">
+                <div class="progress_content">
+                  <span>SQL / MongoDB</span> <span>85%</span>
+                </div>
+                <div class="progress_bar">
+                  <div class="inner_progress" data-skill-level="85"></div>
+                </div>
+              </div>
+              <div class="progress">
+                <div class="progress_content">
+                  <span>Problem Solving</span> <span>70%</span>
+                </div>
+                <div class="progress_bar">
+                  <div class="inner_progress" data-skill-level="70"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section resume-section" id="resume">
+          <h2 class="section-heading animated-section"><span>Resume</span></h2>
+          <p class="section-subheading animated-section">
+            My professional journey and qualifications.
+          </p>
+
+          <div class="main_resume">
+            <div class="resume_column animated-section">
+              <h3 class="resume_title">Summary</h3>
+              <div class="resume_item">
+                <h4>JAY BABARIYA</h4>
+                <p>
+                  <em
+                    >Highly motivated and results-oriented Full Stack Developer
+                    with internship experience in .NET and a strong foundation
+                    in modern web technologies. Eager to contribute technical
+                    skills and a collaborative spirit to a challenging and
+                    growth-oriented role.</em
+                  >
+                </p>
+                <ul>
+                  <li>Ahmedabad, Gujarat, India</li>
+                  <li>+91 94082 71133</li>
+                  <li>jaybabariya01@gmail.com</li>
+                </ul>
+              </div>
+
+              <h3 class="resume_title">Education</h3>
+              <div class="resume_item">
+                <h4>Bachelor of Computer Application - BCA</h4>
+                <h5>2023 - 2026 (Expected)</h5>
+                <p><em>Silver Oak University, Ahmedabad</em></p>
+                <p>
+                  Relevant Coursework: Data Structures & Algorithms,
+                  Object-Oriented Programming, Database Management Systems, Web
+                  Development, Software Engineering.
+                </p>
+                <p>Current CGPA: 8.00</p>
+              </div>
+            </div>
+
+            <div class="resume_column animated-section">
+              <h3 class="resume_title">Professional Experience</h3>
+              <div class="resume_item">
+                <h4>.NET Intern</h4>
+                <h5>Dec 2024 - Present</h5>
+                <p><em>Patel Web Solution, Ahmedabad, IN</em></p>
+                <ul>
+                  <li>
+                    Developing and maintaining features for web applications
+                    using ASP.NET Core MVC, C#, and Entity Framework.
+                  </li>
+                  <li>
+                    Collaborating on database schema design and writing SQL
+                    queries for SQL Server.
+                  </li>
+                  <li>
+                    Implementing responsive front-end components using HTML,
+                    CSS, Bootstrap, and JavaScript/React.js.
+                  </li>
+                  <li>
+                    Actively participating in agile ceremonies, code reviews,
+                    and debugging sessions.
+                  </li>
+                  <li>
+                    Gaining hands-on experience with version control systems
+                    (Git).
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="resume-download-section animated-section">
+            <a
+              href="JayBabariya_Resume.pdf"
+              download="JayBabariya_Resume.pdf"
+              class="btn btn-primary"
+            >
+              Download Full Resume <i class="bx bxs-file-pdf"></i>
+            </a>
+          </div>
+        </section>
+        <section class="section project_section" id="projects">
+          <h2 class="section-heading animated-section">
+            <span>My Projects</span>
+          </h2>
+          <p class="section-subheading animated-section">
+            A selection of projects I've worked on.
+          </p>
+
+          <nav class="project_nav animated-section">
+            <ul>
+              <li>
+                <button class="filter-btn active" data-filter="all">All</button>
+              </li>
+              <li>
+                <button class="filter-btn" data-filter="full-stack">
+                  Full-Stack
+                </button>
+              </li>
+              <li>
+                <button class="filter-btn" data-filter="dotnet">.NET</button>
+              </li>
+              <li>
+                <button class="filter-btn" data-filter="front-end">
+                  Front-End
+                </button>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="projects_container animated-section">
+            <div class="project_item" data-category="front-end">
+              <img src="images/Layer_Shop_Clone.png" alt="Layer Shop Clone" />
+              <div class="project_overlay">
+                <h4>Layer Shop Clone (Frontend)</h4>
+                <p>HTML, CSS, JS</p>
+                <div class="project_links">
+                  <a
+                    href="https://github.com/jaybabariya1612/layers-shop-clone"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="GitHub Repo"
+                    ><i class="bx bxl-github"></i
+                  ></a>
+                  <a
+                    href="https://layers-shop-clone.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Live Preview"
+                    ><i class="bx bx-link-external"></i
+                  ></a>
+                  <a
+                    href="https://github.com/jaybabariya1612/layers-shop-clone/blob/main/Readme.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Documentation"
+                    ><i class="bx bx-book"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="project_item" data-category="full-stack">
+              <img src="images/Yogi_Eng.png" alt="E-commerce Platform" />
+              <div class="project_overlay">
+                <h4>E-commerce Platform (Yogi Engineering | Full-Stack)</h4>
+                <p>React JS,Node.js, Express,SQL Server</p>
+                <div class="project_links">
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="GitHub Repo"
+                    ><i class="bx bxl-github"></i
+                  ></a>
+                  <a
+                    href="https://yogi-eng-ecommarce.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Live Preview"
+                    ><i class="bx bx-link-external"></i
+                  ></a>
+                  <a
+                    href="https://github.com/jaybabariya1612/YOGI-ENG-ECOMMARCE/blob/main/README.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Documentation"
+                    ><i class="bx bx-book"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="project_item" data-category="front-end">
+              <img
+                src="images/lic-calculator-project-preview.png"
+                alt="Quantum LIC Premium Calculator"
+              />
+              <div class="project_overlay">
+                <h4>Quantum LIC Premium Calculator (Frontend)</h4>
+                <p>HTML5, CSS3, JavaScript</p>
+                <div class="project_links">
+                  <a
+                    href="https://github.com/jaybabariya1612/Quantum-LIC-Premium-Calculator"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="GitHub Repo"
+                    ><i class="bx bxl-github"></i
+                  ></a>
+                  <a
+                    href="https://quantum-lic-premium-calculator.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Live Preview"
+                    ><i class="bx bx-link-external"></i
+                  ></a>
+                  <a
+                    href="https://github.com/jaybabariya1612/Quantum-LIC-Premium-Calculator/blob/main/Readme.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Documentation"
+                    ><i class="bx bx-book"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="project_item" data-category="front-end">
+              <img
+                src="images/Ultimate_Luxury_Hotel_Stay_Calculator.png"
+                alt="Ultimate Luxury Hotel Stay Calculator"
+              />
+              <div class="project_overlay">
+                <h4>Ultimate Luxury Hotel Stay Calculator (Frontend)</h4>
+                <p>HTML5, CSS3, JavaScript, Tailwind css</p>
+                <div class="project_links">
+                  <a
+                    href="https://github.com/jaybabariya1612/Hotel-Stay-Calculator"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="GitHub Repo"
+                    ><i class="bx bxl-github"></i
+                  ></a>
+                  <a
+                    href="https://hotel-stay-calculator.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Live Preview"
+                    ><i class="bx bx-link-external"></i
+                  ></a>
+                  <a
+                    href="https://github.com/jaybabariya1612/Hotel-Stay-Calculator/blob/main/Readme.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Documentation"
+                    ><i class="bx bx-book"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="project_item" data-category="dotnet">
+              <img src="images/project-task-api.jpg" alt=".NET Task API" />
+              <div class="project_overlay">
+                <h4>Task Management API</h4>
+                <p>.NET Core Web API, SQL Server</p>
+                <div class="project_links">
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="GitHub Repo"
+                    ><i class="bx bxl-github"></i
+                  ></a>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- <div class="project_item" data-category="full-stack dotnet">
+              <img src="images/project-blog.jpg" alt="Blogging Platform" />
+              <div class="project_overlay">
+                <h4>Blogging Platform</h4>
+                <p>ASP.NET MVC, Entity Framework, JS</p>
+                <div class="project_links">
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="GitHub Repo"
+                    ><i class="bx bxl-github"></i
+                  ></a>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </section>
+        <section class="section github_section" id="github">
+          <h2 class="section-heading animated-section">
+            <span>GitHub Activity</span>
+          </h2>
+          <p class="section-subheading animated-section">
+            My contribution graph showcasing coding activity.
+          </p>
+          <div class="github_contributions animated-section">
+            <picture>
+              <source
+                srcset="
+                  https://ghchart.rshah.org/149ddd/jaybabariya1612?bg=12181F&hide_title=true
+                "
+                media="(prefers-color-scheme: dark)"
+              />
+              <img
+                src="https://ghchart.rshah.org/149ddd/jaybabariya1612?hide_title=true"
+                alt="Jay Babariya's GitHub Contributions Chart"
+              />
+            </picture>
+            <p class="github-link">
+              <a
+                href="https://github.com/jaybabariya1612"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-secondary"
+              >
+                Visit my GitHub Profile <i class="bx bx-link-external"></i>
+              </a>
+            </p>
+          </div>
+        </section>
+        <section class="section contact_section" id="contact">
+          <h2 class="section-heading animated-section">
+            <span>Get In Touch</span>
+          </h2>
+          <p class="section-subheading animated-section">
+            Have a project in mind or just want to say hi? Feel free to reach
+            out!
+          </p>
+
+          <div class="main_contact">
+            <div class="contact_info animated-section">
+              <div class="info_box">
+                <div class="info-icon"><i class="bx bx-map"></i></div>
+                <div class="info-text">
+                  <h3>Location:</h3>
+                  <p>Ahmedabad, Gujarat, 382350, India</p>
+                </div>
+              </div>
+              <div class="info_box">
+                <div class="info-icon"><i class="bx bx-envelope"></i></div>
+                <div class="info-text">
+                  <h3>Email:</h3>
+                  <p>
+                    <a href="mailto:jaybabariya01@gmail.com"
+                      >jaybabariya01@gmail.com</a
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="info_box">
+                <div class="info-icon"><i class="bx bx-phone-call"></i></div>
+                <div class="info-text">
+                  <h3>Call:</h3>
+                  <p><a href="tel:+919408271133">+91 94082 71133</a></p>
+                </div>
+              </div>
+              <!-- <div class="map-embed">
+                              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117488.09016933997!2d72.4900953409584!3d23.04701352797584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1715516901001!5m2!1sen!2sin" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                          </div> -->
+            </div>
+
+            <div class="contact_form animated-section">
+              <form
+                action="https://script.google.com/macros/s/AKfycbyW21v8Al40WtbgFvLma5JEyKgZvBp9QM-J3z2zvoo5XctKxo70LLsiEL6EXdTbaqKv/exec"
+                method="POST"
+                class="php-email-form"
+              >
+                <div class="form-row">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      name="Name"
+                      id="name"
+                      placeholder="Your Name"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      name="Email"
+                      id="email"
+                      placeholder="Your Email"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="Subject"
+                    id="subject"
+                    placeholder="Subject"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <textarea
+                    name="Message"
+                    id="message"
+                    placeholder="Your Message"
+                    rows="6"
+                    required
+                  ></textarea>
+                </div>
+                <div class="form-submit">
+                  <button type="submit" class="btn btn-primary">
+                    Send Message
+                  </button>
+                </div>
+                <div class="my-3">
+                  <div class="loading" style="display: none">Loading</div>
+                  <div
+                    class="error-message"
+                    style="display: none; color: red"
+                  ></div>
+                  <div class="sent-message" style="display: none; color: green">
+                    Your message has been sent. Thank you!
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+        <footer class="main-footer">
+          <div class="footer-content">
+            Designed with <i class="fas fa-laptop-code"></i> by Jay Babariya
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <a href="#home" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+
+    <script src="script.js" defer></script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+  </body>
+</html>
