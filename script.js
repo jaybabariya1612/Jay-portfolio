@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('sidebar');
     const menuBtn = document.getElementById('menu-btn');
@@ -7,16 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainContainer = document.getElementById('main-container');
     const backToTopButton = document.querySelector('.back-to-top');
 
-    menuBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("open");
-        const expanded = menuBtn.getAttribute("aria-expanded") === "true";
-        menuBtn.setAttribute("aria-expanded", !expanded);
-    });
-
     // --- Preloader ---
     window.addEventListener('load', () => {
         if (preloader) {
-            preloader.classList.add('hidden'); // Add class to trigger fade out
+            preloader.classList.add('hidden');
             if (mainContainer) {
                 mainContainer.classList.add('loaded');
             }
@@ -24,80 +17,83 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Sidebar Toggle ---
-    window.toggleSidebar = () => {
+    const toggleSidebar = () => {
         const isActive = sidebar.classList.toggle('active');
         document.body.classList.toggle('sidebar-open', isActive);
         menuBtn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
         menuBtn.innerHTML = isActive ? "<i class='bx bx-x'></i>" : "<i class='bx bx-menu'></i>";
     };
 
-    // Close sidebar if clicking outside
-    document.body.addEventListener('click', (e) => {
-        if (sidebar.classList.contains('active') && !sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+    // Close sidebar function
+    const closeSidebar = () => {
+        if (sidebar.classList.contains('active')) {
             sidebar.classList.remove('active');
             document.body.classList.remove('sidebar-open');
             menuBtn.setAttribute('aria-expanded', 'false');
             menuBtn.innerHTML = "<i class='bx bx-menu'></i>";
         }
-    });
+    };
 
-    // Close sidebar on nav link click (mobile)
-    document.querySelectorAll('.sidebar-nav a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth < 1200 && sidebar.classList.contains('active')) {
-                sidebar.classList.remove('active');
-                document.body.classList.remove('sidebar-open');
-                menuBtn.setAttribute('aria-expanded', 'false');
-                menuBtn.innerHTML = "<i class='bx bx-menu'></i>";
+    // Menu button click handler
+    menuBtn.addEventListener("click", toggleSidebar);
+
+    // Close sidebar when clicking outside or on nav link (mobile)
+    document.addEventListener('click', (e) => {
+        const isMobileView = window.innerWidth < 1200;
+        const isClickInsideSidebar = sidebar.contains(e.target);
+        const isClickOnMenuBtn = menuBtn.contains(e.target);
+        const isNavLink = e.target.closest('.sidebar-nav a');
+
+        if (isMobileView && sidebar.classList.contains('active')) {
+            if ((!isClickInsideSidebar && !isClickOnMenuBtn) || isNavLink) {
+                closeSidebar();
             }
-        });
+        }
     });
 
     // Typing effect
     const textElement = document.getElementById('text');
     const cursorElement = document.getElementById('cursor');
-    const texts = ["Full Stack Developer", ".NET Developer", "React Developer", "Problem Solver"];
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
+    if (textElement && cursorElement) {
+        const texts = ["Full Stack Developer", ".NET Developer", "React Developer", "Problem Solver"];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
 
-    function type() {
-        if (!textElement || !cursorElement) return;
+        const type = () => {
+            const currentText = texts[textIndex];
+            let displayedText = '';
 
-        const currentText = texts[textIndex];
-        let displayedText = '';
+            if (isDeleting) {
+                displayedText = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                displayedText = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
 
-        if (isDeleting) {
-            displayedText = currentText.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            displayedText = currentText.substring(0, charIndex + 1);
-            charIndex++;
-        }
+            textElement.textContent = displayedText;
+            cursorElement.style.display = 'inline-block';
 
-        textElement.textContent = displayedText;
-        cursorElement.style.display = 'inline-block';
+            let typeSpeed = 120;
+            if (isDeleting) {
+                typeSpeed /= 1.5;
+            }
 
-        let typeSpeed = 120;
-        if (isDeleting) {
-            typeSpeed /= 1.5;
-        }
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
 
-        if (!isDeleting && charIndex === currentText.length) {
-            typeSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            textIndex = (textIndex + 1) % texts.length;
-            typeSpeed = 500;
-        }
+            setTimeout(type, typeSpeed);
+        };
 
-        setTimeout(type, typeSpeed);
+        setTimeout(type, 1000);
     }
-
-    setTimeout(type, 1000);
-
-
 
     // --- Intersection Observer for Animations & Active Nav ---
     const sections = document.querySelectorAll('.section');
@@ -108,16 +104,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.15 // Trigger when 15% of the element is visible
+        threshold: 0.15
     };
 
     const navObserverOptions = {
         root: null,
-        rootMargin: '-40% 0px -60% 0px', // Adjust margins to activate link slightly earlier
+        rootMargin: '-40% 0px -60% 0px',
         threshold: 0
     };
 
-    let progressAnimated = false; // Track if progress bars have been animated
+    let progressAnimated = false;
 
     // Animation Observer Callback
     const animationCallback = (entries, observer) => {
@@ -125,15 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('show');
 
-                // Animate progress bars only when the skills section is intersecting
                 if (entry.target.closest('.skills-section') && !progressAnimated) {
                     animateProgressBars();
                 }
-                // Optional: Unobserve after first animation
-                // observer.unobserve(entry.target);
-            } else {
-                // Optional: Remove class to re-animate on scroll up
-                //   entry.target.classList.remove('show');
             }
         });
     };
@@ -141,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Navigation Active State Observer Callback
     const navCallback = (entries, observer) => {
         entries.forEach(entry => {
-            // Check if the entry is intersecting or if it's the home section at the top
             if (entry.isIntersecting || (entry.target.id === 'home' && window.scrollY < window.innerHeight / 2)) {
                 const id = entry.target.getAttribute('id');
                 let activeLinkFound = false;
@@ -154,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                // Fallback for top of page if home isn't intersecting but scrollY is low
                 if (!activeLinkFound && window.scrollY < 100) {
                     const homeLink = document.querySelector('.sidebar-nav a[href="#home"]');
                     if (homeLink) homeLink.classList.add('active');
@@ -169,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
     animatedElements.forEach(el => animationObserver.observe(el));
     sections.forEach(section => navObserver.observe(section));
 
-
     // --- Animate Progress Bars ---
     function animateProgressBars() {
         if (progressAnimated) return;
@@ -177,9 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const level = bar.getAttribute('data-skill-level');
             bar.style.width = level + '%';
         });
-        progressAnimated = true; // Set flag to true after animating
+        progressAnimated = true;
     }
-
 
     // --- Project Filtering ---
     const filterButtons = document.querySelectorAll('.filter-btn');
@@ -188,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
     filterButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            if (button.classList.contains('active')) return; // Do nothing if already active
+            if (button.classList.contains('active')) return;
 
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
@@ -199,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const category = item.getAttribute('data-category');
                 const shouldShow = (filter === 'all' || category.includes(filter));
 
-                // Use a class for hiding/showing to manage transitions via CSS
                 if (shouldShow) {
                     item.classList.remove('hide');
                 } else {
@@ -212,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Dynamic Age Calculation ---
     const ageElement = document.getElementById('age');
     if (ageElement) {
-        const birthDate = new Date(2006, 7, 13); // Month is 0-indexed (11 = December)
+        const birthDate = new Date(2006, 7, 13);
         const today = new Date();
         let age = today.getFullYear() - birthDate.getFullYear();
         const monthDiff = today.getMonth() - birthDate.getMonth();
@@ -231,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Back to Top Button ---
     window.addEventListener('scroll', () => {
         if (backToTopButton) {
-            if (window.scrollY > 200) { // Show after scrolling 200px
+            if (window.scrollY > 200) {
                 backToTopButton.classList.add('visible');
             } else {
                 backToTopButton.classList.remove('visible');
@@ -239,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Initialize Firebase (replace with your config)
+    // Initialize Firebase
     const firebaseConfig = {
         apiKey: "AIzaSyCQ2gbWUBIAmPlwV1wfkovwIXHITV7Q2HU",
         authDomain: "portfoliosubmissions-dad23.firebaseapp.com",
@@ -253,41 +238,42 @@ document.addEventListener('DOMContentLoaded', () => {
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-
     // --- Contact Form Handling ---
-    document.querySelector('.php-email-form').addEventListener('submit', async function (e) {
-        e.preventDefault();
+    const contactForm = document.querySelector('.php-email-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
 
-        const loading = document.querySelector('.loading');
-        const errorMessage = document.querySelector('.error-message');
-        const sentMessage = document.querySelector('.sent-message');
+            const loading = document.querySelector('.loading');
+            const errorMessage = document.querySelector('.error-message');
+            const sentMessage = document.querySelector('.sent-message');
 
-        loading.style.display = 'block';
-        errorMessage.style.display = 'none';
-        sentMessage.style.display = 'none';
+            loading.style.display = 'block';
+            errorMessage.style.display = 'none';
+            sentMessage.style.display = 'none';
 
-        try {
-            await db.collection('contacts').add({
-                name,
-                email,
-                subject,
-                message,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            });
+            try {
+                await db.collection('contacts').add({
+                    name,
+                    email,
+                    subject,
+                    message,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
 
-            loading.style.display = 'none';
-            sentMessage.style.display = 'block';
-            this.reset();
-        } catch (error) {
-            loading.style.display = 'none';
-            errorMessage.textContent = 'Error: ' + error.message;
-            errorMessage.style.display = 'block';
-        }
-    });
-
+                loading.style.display = 'none';
+                sentMessage.style.display = 'block';
+                this.reset();
+            } catch (error) {
+                loading.style.display = 'none';
+                errorMessage.textContent = 'Error: ' + error.message;
+                errorMessage.style.display = 'block';
+            }
+        });
+    }
 });
