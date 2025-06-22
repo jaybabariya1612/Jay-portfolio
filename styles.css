@@ -257,7 +257,8 @@ img {
     border-radius: 50%;
     border: 5px solid var(--color-border);
     /* Slightly thicker border */
-    margin-bottom: 15px;
+    margin-top: 15px;
+    /* margin-bottom: 15px;*/
     object-fit: cover;
     box-shadow: 0 4px 10px var(--color-shadow);
 }
