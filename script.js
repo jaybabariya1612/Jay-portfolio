@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const textElement = document.getElementById('text');
     const cursorElement = document.getElementById('cursor');
     if (textElement && cursorElement) {
-        const texts = ["Full Stack Developer", ".NET Developer", "React Developer", "Problem Solver"];
+        const texts = ["Full Stack Developer", ".NET Developer", "React Developer", "Software Developer"];
         let textIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
