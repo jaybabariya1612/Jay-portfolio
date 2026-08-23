@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { portfolioData, Project } from '../data/portfolio';
+import type { Project } from '../data/portfolio';
+import { portfolioData } from '../data/portfolio';
 import { SectionHeading } from '../components/SectionHeading';
-import { Button } from '../components/Button';
 
 const filters = [
   { id: 'all', label: 'All Projects' },
@@ -52,8 +52,8 @@ export function Projects() {
           layout
         >
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
+            {filteredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
             ))}
           </AnimatePresence>
         </motion.div>
@@ -62,14 +62,11 @@ export function Projects() {
   );
 }
 
-import { AnimatePresence } from 'framer-motion';
-
 interface ProjectCardProps {
   project: Project;
-  index: number;
 }
 
-function ProjectCard({ project, index }: ProjectCardProps) {
+function ProjectCard({ project }: ProjectCardProps) {
   return (
     <motion.div
       layout

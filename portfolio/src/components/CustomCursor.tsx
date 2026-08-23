@@ -8,6 +8,7 @@ interface CustomCursorProps {
 export function CustomCursor({ enabled = true }: CustomCursorProps) {
   const [isHovering, setIsHovering] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
   
@@ -15,7 +16,12 @@ export function CustomCursor({ enabled = true }: CustomCursorProps) {
   const smoothY = useSpring(cursorY, { stiffness: 500, damping: 28 });
 
   useEffect(() => {
-    if (!enabled) return;
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    setIsTouchDevice(isTouch);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled || isTouchDevice) return;
 
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX - 16);
@@ -47,16 +53,9 @@ export function CustomCursor({ enabled = true }: CustomCursorProps) {
       document.removeEventListener('mouseover', handleMouseOver);
       document.removeEventListener('mouseout', handleMouseOut);
     };
-  }, [enabled, cursorX, cursorY]);
+  }, [enabled, isTouchDevice, cursorX, cursorY]);
 
-  useEffect(() => {
-    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (isTouch) {
-      enabled = false;
-    }
-  }, [enabled]);
-
-  if (!enabled) return null;
+  if (!enabled || isTouchDevice) return null;
 
   return (
     <>
@@ -72,8 +71,8 @@ export function CustomCursor({ enabled = true }: CustomCursorProps) {
       <motion.div
         className="fixed top-0 left-0 w-8 h-8 border border-[#D97706]/40 rounded-full pointer-events-none z-[9998]"
         style={{
-          x: smoothX.to((v) => v - 8),
-          y: smoothY.to((v) => v - 8),
+          x: smoothX.get() - 8,
+          y: smoothY.get() - 8,
           scale: isHovering ? 1.5 : 1,
         }}
       />
@@ -81,8 +80,8 @@ export function CustomCursor({ enabled = true }: CustomCursorProps) {
       <motion.div
         className="fixed top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none z-0 opacity-30"
         style={{
-          x: smoothX.to((v) => v - 250),
-          y: smoothY.to((v) => v - 250),
+          x: smoothX.get() - 250,
+          y: smoothY.get() - 250,
           background: 'radial-gradient(circle, rgba(217,119,6,0.08) 0%, rgba(217,119,6,0.02) 40%, transparent 70%)',
         }}
       />
