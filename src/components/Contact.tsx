@@ -14,6 +14,7 @@ import {
   Check
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import emailjs from '@emailjs/browser';
 import { personalInfo } from '../data/portfolioData';
 import { submitContactMessage } from '../firebase';
 import { playClick, playSuccess } from '../utils/sound';
@@ -41,64 +42,63 @@ export const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    if (loading) return; // Prevent duplicate submissions while sending
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) return;
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setStatus({
+        type: 'error',
+        message: 'Email service configuration is missing. Please configure VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY.'
+      });
+      return;
+    }
 
     setLoading(true);
     setStatus({ type: null, message: '' });
 
     try {
-      // 1. Send email directly to jaybabariya630@gmail.com via SMTP backend
-      let smtpSuccess = false;
-      let smtpError = '';
+      // 1. Send via EmailJS with exact parameter names: name, email, subject, message
+      const templateParams = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        subject: formData.subject.trim() || 'General Inquiry',
+        message: formData.message.trim()
+      };
 
-      try {
-        const response = await fetch('/api/send-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        });
-
-        const result = await response.json();
-        if (response.ok && result.success) {
-          smtpSuccess = true;
-        } else {
-          smtpError = result.error || 'SMTP delivery failed.';
-        }
-      } catch (err: any) {
-        console.warn('Backend SMTP API endpoint not available or network error:', err);
-        smtpError = err?.message || 'Network issue with SMTP endpoint';
-      }
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
       // 2. Also log to Firebase Firestore for redundancy
-      await submitContactMessage(formData);
-
-      if (smtpSuccess) {
-        playSuccess();
-        confetti({
-          particleCount: 90,
-          spread: 70,
-          origin: { y: 0.7 }
+      try {
+        await submitContactMessage({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          subject: formData.subject.trim() || 'General Inquiry',
+          message: formData.message.trim()
         });
-        setStatus({
-          type: 'success',
-          message: 'Message delivered directly to Jay Babariya’s mailbox Thank you, I will reply shortly.'
-        });
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        // If SMTP failed, still recorded in Firestore
-        playSuccess();
-        setStatus({
-          type: 'success',
-          message: 'Your message has been captured and dispatched to Jay Babariya. Thank you!'
-        });
-        setFormData({ name: '', email: '', subject: '', message: '' });
+      } catch (fbErr) {
+        console.warn('Firebase redundancy sync notice:', fbErr);
       }
+
+      playSuccess();
+      confetti({
+        particleCount: 90,
+        spread: 70,
+        origin: { y: 0.7 }
+      });
+      setStatus({
+        type: 'success',
+        message: 'Message delivered directly to Jay Babariya. Thank you, I will reply shortly!'
+      });
+      setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (err: any) {
+      console.error('EmailJS submission error:', err);
       setStatus({
         type: 'error',
-        message: err?.message || 'An unexpected error occurred. Please try again or email directly.'
+        message: err?.text || err?.message || 'Failed to send message. Please try again or email directly.'
       });
     } finally {
       setLoading(false);
@@ -262,7 +262,7 @@ export const Contact: React.FC = () => {
               Send an Instant Message
             </h3>
             <p style={{ fontSize: '0.9rem', color: 'var(--muted)', marginBottom: '28px', lineHeight: 1.6 }}>
-              Dispatched directly to <strong style={{ color: 'var(--cyan)' }}>jaybabariya630@gmail.com</strong> via authenticated Gmail SMTP.
+              Dispatched directly to <strong style={{ color: 'var(--cyan)' }}>jaybabariya630@gmail.com</strong>.
             </p>
 
             {/* Quick subject suggestion chips */}
@@ -311,6 +311,7 @@ export const Contact: React.FC = () => {
                   </label>
                   <input
                     type="text"
+                    name="name"
                     required
                     placeholder="e.g. Alex Mercer"
                     value={formData.name}
@@ -337,6 +338,7 @@ export const Contact: React.FC = () => {
                   </label>
                   <input
                     type="email"
+                    name="email"
                     required
                     placeholder="alex@company.com"
                     value={formData.email}
@@ -364,6 +366,7 @@ export const Contact: React.FC = () => {
                 </label>
                 <input
                   type="text"
+                  name="subject"
                   placeholder="Project or opportunity description"
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
@@ -388,6 +391,7 @@ export const Contact: React.FC = () => {
                   MESSAGE *
                 </label>
                 <textarea
+                  name="message"
                   required
                   rows={5}
                   placeholder="Describe your project, timeline, tech stack, or job details..."
@@ -440,7 +444,7 @@ export const Contact: React.FC = () => {
                 {loading ? (
                   <>
                     <Loader2 size={18} className="animate-spin" />
-                    <span>Transmitting Message via SMTP...</span>
+                    <span>Sending Message...</span>
                   </>
                 ) : (
                   <>

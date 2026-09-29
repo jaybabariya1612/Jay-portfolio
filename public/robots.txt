@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jaybabariya.dev/sitemap.xml
+Sitemap: https://jaybabariya1612.github.io/Jay-portfolio/sitemap.xml

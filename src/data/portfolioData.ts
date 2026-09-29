@@ -1,5 +1,11 @@
 import { Project, Experience, Education, Certification, SkillCategory, ServiceItem, FAQItem, AchievementItem } from '../types';
 
+export const getAssetUrl = (path: string): string => {
+  const base = import.meta.env.BASE_URL || '/';
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return base.endsWith('/') ? `${base}${cleanPath}` : `${base}/${cleanPath}`;
+};
+
 export const personalInfo = {
   name: "Jay Babariya",
   role: "Full Stack .NET & React Developer",
@@ -8,9 +14,9 @@ export const personalInfo = {
   email: "jaybabariya01@gmail.com",
   phone: "+91 9408271133",
   status: "Available for Full-Time & Freelance",
-  resumeUrl: "/Jay's Resume.pdf",
-  avatar: "/images/Jay_Babariya_Profile_Picture.jpg",
-  logo: "/images/JB.png",
+  resumeUrl: getAssetUrl("Jay's Resume.pdf"),
+  avatar: getAssetUrl("images/Jay_Babariya_Profile_Picture.jpg"),
+  logo: getAssetUrl("images/JB.png"),
   socials: {
     github: "https://github.com/jaybabariya1612",
     linkedin: "https://www.linkedin.com/in/jay-babariya-81564b357",
@@ -194,7 +200,7 @@ export const projects: Project[] = [
     category: "enterprise",
     categoryLabel: "Enterprise .NET",
     stack: ["ASP.NET Core Web API", "C#", "SQL Server", "SignalR", "Swagger", "Postman", "JWT"],
-    image: "/images/zoag-enterprise.jpg",
+    image: getAssetUrl("images/zoag-enterprise.jpg"),
     featured: true,
     highlights: ["Repository/Service Pattern", "SignalR Real-Time Tracking", "JWT Token Auth", "Optimized Stored Procedures"]
   },
@@ -212,7 +218,7 @@ export const projects: Project[] = [
     category: "enterprise",
     categoryLabel: "Cloud & Real-time",
     stack: ["ASP.NET Core Web API", "C#", "SQL Server", "JWT", "SignalR", "Cloudflare R2"],
-    image: "/images/disploy-signage.jpg",
+    image: getAssetUrl("images/disploy-signage.jpg"),
     featured: true,
     highlights: ["Multi-Tenant Routing", "Cloudflare R2 Integration", "SignalR Screen Heartbeat", "Weather & Emergency Triggers"]
   },
@@ -230,7 +236,7 @@ export const projects: Project[] = [
     category: "automation",
     categoryLabel: "Automation / OCR",
     stack: ["C# Console App", "Amazon Textract", "iTextSharp", "Aspose.Pdf", "SQL Server", "ADO.NET"],
-    image: "/images/synthesis-automation.jpg",
+    image: getAssetUrl("images/synthesis-automation.jpg"),
     featured: true,
     highlights: ["Amazon Textract OCR", "Dynamic Vendor Router", "Payroll Computation Engine", "High Accuracy Extraction"]
   },
@@ -248,7 +254,7 @@ export const projects: Project[] = [
     category: "automation",
     categoryLabel: "Windows Service",
     stack: ["C#", ".NET Windows Service", "REST APIs", "SQL Server", "Crystal Reports", "ZXing"],
-    image: "/images/txparts-sync.png",
+    image: getAssetUrl("images/txparts-sync.png"),
     featured: false,
     highlights: ["Background Daemon", "Concurrency Lock Guard", "ZXing Barcode Support", "Auto Retry with History"]
   },
@@ -266,7 +272,7 @@ export const projects: Project[] = [
     category: "dotnet",
     categoryLabel: "Desktop / WinForms",
     stack: ["C#", ".NET WinForms", "SQL Server", "Crystal Reports", "ZXing", "QuickBooks"],
-    image: "/images/sales-pos.png",
+    image: getAssetUrl("images/sales-pos.png"),
     featured: true,
     highlights: ["QuickBooks Accounting Sync", "Barcode Scanning", "Real-Time Profit Analytics", "Customer Center"]
   },
@@ -283,7 +289,7 @@ export const projects: Project[] = [
     category: "full-stack",
     categoryLabel: "ASP.NET MVC",
     stack: ["ASP.NET MVC 5 (C#)", "SQL Server", "Razor Views", "Bootstrap", "jQuery", "AJAX"],
-    image: "/images/Rosier-Chocolate-Shop.webp",
+    image: getAssetUrl("images/Rosier-Chocolate-Shop.webp"),
     github: "https://github.com/jaybabariya1612/Rosier-Chocolate-Shop",
     docs: "https://github.com/jaybabariya1612/Rosier-Chocolate-Shop/blob/main/README.md",
     featured: true,
@@ -302,7 +308,7 @@ export const projects: Project[] = [
     category: "dotnet",
     categoryLabel: "ASP.NET Core",
     stack: ["ASP.NET Core 6.0 MVC", "Razor Views", "Bootstrap 5", "SQL Server", "Session Auth"],
-    image: "/images/MCBS.png",
+    image: getAssetUrl("images/MCBS.png"),
     github: "https://github.com/jaybabariya1612/MCBS",
     docs: "https://github.com/jaybabariya1612/MCBS/blob/main/README.md",
     featured: true,
@@ -321,7 +327,7 @@ export const projects: Project[] = [
     category: "full-stack",
     categoryLabel: "React & Node.js",
     stack: ["React.js", "Node.js", "Express", "SQL Server", "Tailwind CSS", "Vercel"],
-    image: "/images/Yogi_Eng.png",
+    image: getAssetUrl("images/Yogi_Eng.png"),
     live: "https://yogi-eng-ecommarce.vercel.app/",
     github: "https://github.com/jaybabariya1612/YOGI-ENG-ECOMMARCE/blob/main/README.md",
     featured: true,
@@ -340,7 +346,7 @@ export const projects: Project[] = [
     category: "dotnet",
     categoryLabel: "Desktop / WinForms",
     stack: ["C#", ".NET Framework", "WinForms", "SQL Server", "Guna UI"],
-    image: "/images/EMS.png",
+    image: getAssetUrl("images/EMS.png"),
     github: "https://github.com/jaybabariya1612/Expense-Management-System",
     docs: "https://github.com/jaybabariya1612/Expense-Management-System/blob/main/README.md",
     featured: false,
@@ -359,7 +365,7 @@ export const projects: Project[] = [
     category: "frontend",
     categoryLabel: "Frontend Tool",
     stack: ["HTML5", "CSS3", "JavaScript", "jsPDF", "Glassmorphism"],
-    image: "/images/lic-calculator-project-preview.png",
+    image: getAssetUrl("images/lic-calculator-project-preview.png"),
     live: "https://quantum-lic-premium-calculator.vercel.app/",
     github: "https://github.com/jaybabariya1612/Quantum-LIC-Premium-Calculator",
     featured: false,
@@ -378,7 +384,7 @@ export const projects: Project[] = [
     category: "frontend",
     categoryLabel: "Frontend Tool",
     stack: ["Vanilla JS", "Chart.js", "jsPDF", "Frankfurter FX API"],
-    image: "/images/GLOBAL_CURRENCY_CONVERTER.png",
+    image: getAssetUrl("images/GLOBAL_CURRENCY_CONVERTER.png"),
     live: "https://jaybabariya1612.github.io/Global-Currency-Converter/",
     github: "https://github.com/jaybabariya1612/Global-Currency-Converter",
     featured: false,
@@ -397,7 +403,7 @@ export const projects: Project[] = [
     category: "frontend",
     categoryLabel: "Frontend Tool",
     stack: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS"],
-    image: "/images/Ultimate_Luxury_Hotel_Stay_Calculator.png",
+    image: getAssetUrl("images/Ultimate_Luxury_Hotel_Stay_Calculator.png"),
     live: "https://hotel-stay-calculator.vercel.app/",
     github: "https://github.com/jaybabariya1612/Hotel-Stay-Calculator",
     featured: false,
@@ -416,7 +422,7 @@ export const projects: Project[] = [
     category: "frontend",
     categoryLabel: "UI / UX Clone",
     stack: ["HTML5", "CSS3", "JavaScript", "Advanced Layouts"],
-    image: "/images/Layer_Shop_Clone.png",
+    image: getAssetUrl("images/Layer_Shop_Clone.png"),
     live: "https://layers-shop-clone.vercel.app/",
     github: "https://github.com/jaybabariya1612/layers-shop-clone",
     featured: false,
